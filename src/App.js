@@ -3,8 +3,8 @@ import './App.css';
 
 function App() {
 
-  let nameRef = useRef(null);
   const [task, setTask] = useState ([]);
+  let nameRef = useRef(null);
 
   const AddTask = (e) => {
     if (e.keyCode === 100 && nameRef.value !== ""){
@@ -47,7 +47,7 @@ function App() {
               }
             </ul>
           </div>
-          <div className="card-footer text-muted">
+          <div className="card-footer">
             <strong>Current Nº of tasks {task.length}</strong> 
           </div>
         </div>
