@@ -3,26 +3,27 @@ import './App.css';
 
 function App() {
 
-  const [task, setTask] = useState ([]);
+  const [todo, setTodo] = useState ([]);
   let nameRef = useRef(null);
 
-  const AddTask = (e) => {
-    if (e.keyCode === 100 && nameRef.value !== ""){
-      setTask(task.concat(nameRef.value));
+  const Addtodo = (e) => {
+    if (e.key === 100 && nameRef.value !== ""){
+      setTodo(todo.concat(nameRef.value));
       nameRef.value="";
     }
   }
-  const AddTaskB = (e) => {
+  const Addtodo2 = (e) => {
     if (nameRef.value !== "")
-      setTask(task.concat(nameRef.value));
+      setTodo(todo.concat(nameRef.value));
       nameRef.value="";
   }
 
-  const deleteTask = (index) => {
-    task.splice(index,1);
-    setTask([...task]);
+  const deletetodo = (index) => {
+    todo.splice(index,1);
+    setTodo([...todo]);
   };
 
+  
 
     return (
       
@@ -30,25 +31,27 @@ function App() {
         <div className="card mt-5">
           <div className="card-body" >
             <h1 className="card-title text-center">To-Do List</h1>
-            <ul className="list-group list-group">
+            <ol className="list-group list-group">
               <div className="input-group mb-3 list-group list-group">
-                <input onKeyUp={AddTask} ref={r => nameRef = r} type="text" id="input" className="list-group-item" placeholder="Add a new Task!" />
+                <input onKeyUp={Addtodo} ref={r => nameRef = r} type="text" id="input" className="list-group-item" placeholder="Add a new To-Do!" />
                 <div className="input-group-append list-group list-group">
-                  <button onClick={AddTaskB} className="btn btn-sm btn-success" type="button" id="button">Add</button>
+                  <button onClick={Addtodo2} className="btn btn-sm btn-success" type="button" id="button">Add</button>
                 </div>
               </div>
               {
-                !!task.length > 0 &&
-                task.map((value, index) => {
+                !!todo.length > 0 &&
+                todo.map((value, index) => {
                   return (
-                    <li className="list-group-item" key={index}>{value} <i className="fas fa-trash float-right" id="delete" onClick={() => deleteTask(index)}></i></li>
+                    <li className="list-group-item py-1" key={index}>{value} 
+                    <i className="btn btn-danger btn-md fas fa-trash-alt float-right" id="delete" 
+                      onClick={() => deletetodo(index)}></i></li>
                   )
                 })
               }
-            </ul>
+            </ol>
           </div>
           <div className="card-footer">
-            <strong>Current Nº of tasks {task.length}</strong> 
+            <strong>Current Nº of To-Do: {todo.length}</strong> 
           </div>
         </div>
         </div>
